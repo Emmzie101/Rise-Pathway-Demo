@@ -1,0 +1,6 @@
+{
+  "name": "RISE Pathway | R-WEF",
+  "description": "An AI-assisted transition-to-opportunity platform empowering young Africans to move from uncertainty to clarity, readiness, human connection, and action.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

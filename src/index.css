@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-rwef-green: #0B6B3A;
+  --color-rwef-green-light: #128A4B;
+  --color-rwef-green-soft: #E6F5EC;
+  --color-rwef-green-dark: #074626;
+  --color-rwef-yellow: #F3C623;
+  --color-rwef-yellow-light: #FEF7DC;
+  --color-rwef-yellow-warm: #E2B210;
+  --color-rwef-brown: #4A3319;
+  --color-rwef-brown-light: #F7F3EE;
+  --color-rwef-cream: #F8FAF8;
+  --color-rwef-dark: #122119;
+}
+
+/* Custom organic transitions and typography */
+html {
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F8FAF8;
+  color: #122119;
+}
+
+/* Modern Card Glow & Soft Shadows (Inspired by Crextio, EduSphere & Mentalthy) */
+.saas-card {
+  background: #FFFFFF;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px -5px rgba(11, 107, 58, 0.06), 0 4px 14px -2px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.saas-card:hover {
+  box-shadow: 0 16px 36px -6px rgba(11, 107, 58, 0.1), 0 6px 18px -3px rgba(0, 0, 0, 0.04);
+}
+
+/* Duolingo & Google tactile button pop */
+.btn-duo-primary {
+  background-color: #0B6B3A;
+  color: #FFFFFF;
+  border-radius: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 0 #074626, 0 8px 16px rgba(11, 107, 58, 0.25);
+  transition: all 0.15s ease-out;
+}
+.btn-duo-primary:hover {
+  background-color: #0d7942;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #074626, 0 12px 20px rgba(11, 107, 58, 0.3);
+}
+.btn-duo-primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #074626, 0 2px 6px rgba(11, 107, 58, 0.2);
+}
+
+.btn-duo-yellow {
+  background-color: #F3C623;
+  color: #2E2005;
+  border-radius: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 0 #C99B08, 0 8px 16px rgba(243, 198, 35, 0.25);
+  transition: all 0.15s ease-out;
+}
+.btn-duo-yellow:hover {
+  background-color: #f7ce34;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #C99B08, 0 12px 20px rgba(243, 198, 35, 0.35);
+}
+.btn-duo-yellow:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #C99B08, 0 2px 6px rgba(243, 198, 35, 0.2);
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideRight {
+  animation: slideRight 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 6s ease-in-out infinite;
+}
+
+/* Flowtera Blueprint Grid Patterns */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+.bg-grid-green {
+  background-image: linear-gradient(to right, rgba(11, 107, 58, 0.12) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(11, 107, 58, 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* Soft scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAF8;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4E3DB;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A9C9B7;
+}
+
+/* 2-Dimensional diagonal tilt for sneakpeek window */
+.sneakpeek-2d-tilt {
+  transform: rotate(-1.8deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sneakpeek-2d-tilt:hover {
+  transform: rotate(0deg) translateY(-8px);
+  box-shadow: 0 30px 65px -15px rgba(11, 107, 58, 0.28), 0 10px 25px -10px rgba(7, 70, 38, 0.15);
+}
+
