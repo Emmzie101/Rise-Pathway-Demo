@@ -671,7 +671,7 @@ export const StaffDashboardPage: React.FC<StaffDashboardPageProps> = ({
                       <td className="py-3.5 px-6">
                         <div className="flex items-center gap-3">
                           <img
-                            src={fellow.id === 'fel-1' ? '/src/assets/images/hero_african_youth_1790382182353.jpg' : '/src/assets/images/african_student_reflection_1790382202440.jpg'}
+                            src={fellow.id === 'fel-1' ? '/images/hero/hero_african_youth.jpg' : '/images/pathway/student_reflection.jpg'}
                             alt={fellow.name}
                             referrerPolicy="no-referrer"
                             className="w-8 h-8 rounded-xl object-cover ring-1 ring-emerald-100 shrink-0"

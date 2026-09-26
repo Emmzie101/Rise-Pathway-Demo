@@ -52,7 +52,13 @@ export const RwefLogo: React.FC<RwefLogoProps> = ({
           src="/rwef-logo.png"
           alt="Reboot Wellbeing and Empowerment Foundation"
           referrerPolicy="no-referrer"
-          onError={() => setImgFailed(true)}
+          onError={(e) => {
+            if (!e.currentTarget.src.includes('images')) {
+              e.currentTarget.src = '/images/rwef-logo.png';
+            } else {
+              setImgFailed(true);
+            }
+          }}
           className={`${heights[size]} w-auto object-contain shrink-0`}
         />
         {variant === 'with-rise' && (

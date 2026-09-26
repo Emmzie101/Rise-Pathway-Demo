@@ -218,6 +218,9 @@ export const NetworkingNavigatorPage: React.FC<NetworkingNavigatorPageProps> = (
                         src={mentor.avatar}
                         alt={mentor.name}
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/hero/hero_african_youth.jpg';
+                        }}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
 

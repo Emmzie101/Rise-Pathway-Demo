@@ -158,13 +158,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <div className="flex items-center gap-4">
                     <div className="relative">
                       <img
-                        src="/src/assets/images/hero_african_youth_1790382282353.jpg"
+                        src="/images/hero/hero_african_youth.jpg"
                         alt="Fellow Kofi Mensah"
                         referrerPolicy="no-referrer"
                         className="w-16 h-16 rounded-2xl object-cover ring-2 ring-[#0B6B3A] shadow-md"
                         onError={(e) => {
-                          // Fallback container if specific file missing
-                          e.currentTarget.src = '/src/assets/images/hero_african_youth_1790382182353.jpg';
+                          e.currentTarget.src = '/images/hero/hero_african_youth_1790382182353.jpg';
                         }}
                       />
                       <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#0B6B3A] border-2 border-white flex items-center justify-center text-[#F3C623] shadow-xs">
@@ -394,7 +393,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <div className="p-5 rounded-2xl bg-[#FEF7DA]/60 border border-[#F3C623] flex flex-col sm:flex-row items-center justify-between gap-4 animate-fadeIn">
                     <div className="flex items-center gap-4">
                       <img
-                        src="/src/assets/images/african_creative_mentor_1790382211346.jpg"
+                        src="/images/networking/creative_mentor.jpg"
                         alt="Practitioner Mentor"
                         referrerPolicy="no-referrer"
                         className="w-16 h-16 rounded-2xl object-cover ring-2 ring-[#0B6B3A] shadow-md"
@@ -618,7 +617,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="md:col-span-5">
                 <div className="rounded-3xl overflow-hidden shadow-xl aspect-4/3 relative group border-2 border-emerald-100">
                   <img
-                    src="/src/assets/images/african_student_reflection_1790382202440.jpg"
+                    src="/images/pathway/student_reflection.jpg"
                     alt="African fellow reflecting"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -794,7 +793,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="lg:col-span-5">
                 <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 aspect-4/3 bg-[#074626]">
                   <img
-                    src="/src/assets/images/african_young_professionals_meeting_1790382192146.jpg"
+                    src="/images/pathway/cohort_meeting.jpg"
                     alt="GBG Cohort fellows in collaboration"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"

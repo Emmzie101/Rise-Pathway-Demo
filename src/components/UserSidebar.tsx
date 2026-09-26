@@ -209,9 +209,12 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="relative shrink-0">
               <img
-                src={participant.avatar || '/src/assets/images/hero_african_youth_1790382182353.jpg'}
+                src={participant.avatar || '/images/hero/hero_african_youth.jpg'}
                 alt={participant.name}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = '/images/hero/hero_african_youth.jpg';
+                }}
                 className="w-8 h-8 rounded-xl object-cover ring-2 ring-emerald-200"
               />
               <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#0B6B3A] border-2 border-white" />

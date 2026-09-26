@@ -343,7 +343,7 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({
               <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-4">
                 <div className="flex items-center gap-3">
                   <img
-                    src={participant.avatar || '/src/assets/images/hero_african_youth_1790382182353.jpg'}
+                    src={participant.avatar || '/images/hero/hero_african_youth.jpg'}
                     alt={participant.name}
                     referrerPolicy="no-referrer"
                     className="w-12 h-12 rounded-2xl object-cover ring-2 ring-emerald-200 shadow-sm"
@@ -498,7 +498,7 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({
                   <div>
                     <div className="relative rounded-2xl overflow-hidden aspect-4/3 bg-gray-100 mb-4">
                       <img
-                        src="/src/assets/images/african_student_reflection_1790382202440.jpg"
+                        src="/images/networking/creative_mentor.jpg"
                         alt="Amara Nwosu"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -552,7 +552,7 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({
                   <div>
                     <div className="relative rounded-2xl overflow-hidden aspect-4/3 bg-gray-100 mb-4">
                       <img
-                        src="/src/assets/images/african_young_professionals_meeting_1790382192146.jpg"
+                        src="/images/pathway/cohort_meeting.jpg"
                         alt="Coach Emmanuel"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -606,7 +606,7 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({
                   <div>
                     <div className="relative rounded-2xl overflow-hidden aspect-4/3 bg-gray-100 mb-4">
                       <img
-                        src="/src/assets/images/hero_african_youth_1790382182353.jpg"
+                        src="/images/hero/hero_african_youth.jpg"
                         alt="Kwesi Appiah"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

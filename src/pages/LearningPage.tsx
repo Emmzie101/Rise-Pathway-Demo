@@ -78,10 +78,10 @@ export const LearningPage: React.FC<LearningPageProps> = ({ onNavigate }) => {
   });
 
   const courseCovers = [
-    '/src/assets/images/hero_african_youth_1790382182353.jpg',
-    '/src/assets/images/african_young_professionals_meeting_1790382192146.jpg',
-    '/src/assets/images/african_student_reflection_1790382202440.jpg',
-    '/src/assets/images/hero_african_youth_1790382182353.jpg',
+    '/images/learning/course_networking.jpg',
+    '/images/learning/course_portfolio.jpg',
+    '/images/learning/course_interview.jpg',
+    '/images/learning/course_deliverables.jpg',
   ];
 
   const courseCategories = [
@@ -605,7 +605,7 @@ export const LearningPage: React.FC<LearningPageProps> = ({ onNavigate }) => {
 
                   <div className="flex items-center gap-3.5 mt-3">
                     <img
-                      src="/src/assets/images/african_young_professionals_meeting_1790382192146.jpg"
+                      src="/images/learning/coach_emmanuel.jpg"
                       alt="Coach Emmanuel"
                       referrerPolicy="no-referrer"
                       className="w-12 h-12 rounded-2xl object-cover ring-2 ring-emerald-100"
