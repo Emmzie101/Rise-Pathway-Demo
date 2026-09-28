@@ -119,13 +119,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           </div>
 
-          {/* FLOATING SOFTWARE PREVIEW SNEAKPEEK - 2D DIAGONAL TILT */}
+          {/* FLOATING SOFTWARE PREVIEW SNEAKPEEK - STRAIGHTENED */}
           <div className="max-w-5xl mx-auto relative">
             
             {/* Ambient halo glow */}
             <div className="absolute -inset-3 bg-gradient-to-r from-[#0B6B3A]/15 via-[#F3C623]/20 to-[#0B6B3A]/15 blur-2xl rounded-[3rem] -z-10 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
 
-            {/* Elevated Window Container with 2-Dimensional Diagonal Tilt */}
+            {/* Elevated Window Container - Straightened */}
             <div className="sneakpeek-2d-tilt relative rounded-3xl sm:rounded-[2.5rem] bg-white border-2 border-emerald-200/90 shadow-[0_25px_60px_-15px_rgba(11,107,58,0.18)] overflow-hidden origin-center">
               
               {/* Window Chrome Titlebar in Brand Dark Green */}
