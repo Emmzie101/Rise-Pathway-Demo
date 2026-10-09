@@ -58,13 +58,13 @@ export const GoalClarificationPage: React.FC<GoalClarificationPageProps> = ({
       milestones: ['Document project problem, solution & impact', 'Deploy demo online with zero hosting cost', 'Gather feedback from 2 cohort peers'],
     },
     {
-      title: 'Connect with 2 African Tech / Industry Mentors',
-      category: 'Mentorship',
-      desc: 'Conduct two focused 15-minute guidance conversations with practitioners at leading African firms.',
+      title: 'Target 5 African Companies & Build Work Dossier',
+      category: 'Industry Research',
+      desc: 'Conduct thorough company research, analyze hiring pipelines, and prepare personalized application deliverables.',
       feasibility: 92,
-      deliverables: '2 Structured 15-Min Voice Calls + Career Action Notes',
+      deliverables: '5 Target Company Profiles + Customized Portfolio Case Study',
       weeklyHours: '6 hrs/wk',
-      milestones: ['Select 2 mentors from our directory', 'Send courteous 3-sentence outreach note', 'Ask 3 pre-prepared career questions'],
+      milestones: ['Select 5 companies matching your field', 'Analyze their product stack and challenges', 'Package 1 targeted case study'],
     },
     {
       title: 'Prepare a Postgraduate or Fellowship Application',
@@ -109,7 +109,7 @@ export const GoalClarificationPage: React.FC<GoalClarificationPageProps> = ({
       setAiRefining(false);
       if (customGoalText.trim()) {
         setSelectedGoalTitle(
-          `Deliver a complete ${customGoalText.trim()} with verifiable evidence and mentor feedback.`
+          `Deliver a complete ${customGoalText.trim()} with verifiable evidence and cohort peer feedback.`
         );
       }
     }, 600);
@@ -151,7 +151,7 @@ export const GoalClarificationPage: React.FC<GoalClarificationPageProps> = ({
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-[#074626] bg-[#FEF7DA] px-3.5 py-1.5 rounded-2xl border border-[#F3C623] flex items-center gap-1.5 shadow-xs">
               <Flame className="w-4 h-4 text-[#F3C623] fill-[#F3C623]" />
-              <span>GBG Cohort 2 Cadence</span>
+              <span>14-Day Sprint Cadence</span>
             </span>
           </div>
         </div>
@@ -225,7 +225,7 @@ export const GoalClarificationPage: React.FC<GoalClarificationPageProps> = ({
                 {currentPreset.deliverables}
               </div>
               <p className="text-[11px] text-gray-500 mt-1 font-normal">
-                Peer-reviewed by cohort fellows and mentors.
+                Peer-reviewed by cohort fellows and facilitators.
               </p>
             </div>
             <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-xs">
@@ -407,7 +407,7 @@ export const GoalClarificationPage: React.FC<GoalClarificationPageProps> = ({
                   />
                 </div>
                 <p className="text-[11px] text-gray-500 font-normal">
-                  Specify concrete evidence (such as a published URL, 3 confirmation receipts, or written notes from a mentor call).
+                  Specify concrete evidence (such as a published URL, 3 confirmation receipts, or written project documentation).
                 </p>
               </div>
 
@@ -476,8 +476,8 @@ export const GoalClarificationPage: React.FC<GoalClarificationPageProps> = ({
                   },
                   {
                     phase: 'Days 10–12',
-                    title: 'Mentor Outreach',
-                    desc: 'Engage with a practitioner across African tech hubs for targeted feedback.',
+                    title: 'Portfolio Review',
+                    desc: 'Conduct structured peer review and self-audit for project deliverables.',
                   },
                   {
                     phase: 'Days 13–14',

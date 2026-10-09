@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageView } from '../types';
+import { PageView, UserAccount } from '../types';
 import { RwefLogo } from '../components/RwefLogo';
 import {
   ArrowRight,
@@ -30,19 +30,28 @@ import {
   Rocket,
   AlertTriangle,
   Globe2,
+  LogIn,
 } from 'lucide-react';
 
 interface LandingPageProps {
   onNavigate: (view: PageView) => void;
   onOpenResponsibleAi: () => void;
+  onOpenSignUp?: () => void;
+  onOpenLogIn?: () => void;
+  onOpenExploreDemo?: () => void;
+  currentUser?: UserAccount | null;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   onNavigate,
   onOpenResponsibleAi,
+  onOpenSignUp,
+  onOpenLogIn,
+  onOpenExploreDemo,
+  currentUser,
 }) => {
   // Interactive preview tabs inside the floating software preview window
-  const [heroTab, setHeroTab] = useState<'plan' | 'language' | 'mentor'>('plan');
+  const [heroTab, setHeroTab] = useState<'plan' | 'language' | 'proof'>('plan');
   const [task1Done, setTask1Done] = useState(true);
   const [task2Done, setTask2Done] = useState(false);
 
@@ -63,7 +72,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {/* Context Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B6B3A] text-white text-xs font-semibold uppercase tracking-wider mb-6 shadow-md shadow-[#0B6B3A]/20">
               <span className="w-2 h-2 rounded-full bg-[#F3C623] animate-pulse" />
-              <span>R-WEF · Growth Beyond Grades Cohort 2 · 100% Free</span>
+              <span>R-WEF · Pan-African Transition Platform · 100% Free</span>
             </div>
 
             {/* Main Headline with Brand Green & Yellow Underline */}
@@ -76,25 +85,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
             {/* Inclusive Pan-African Narrative with Proper Visual Hierarchy */}
             <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8 font-normal">
-              Finishing university, polytechnic, college, or national youth service is tough when callbacks are slow. RISE gives you a structured 14-day game plan to convert your coursework into concrete job proof, polish your CV, and connect with caring African mentors.
+              Finishing university, polytechnic, college, or national youth service is tough when callbacks are slow. RISE gives you a structured 14-day game plan to convert your coursework into concrete job proof, polish your CV, and build proven career readiness.
             </p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons: Get Started (Sign Up) and Continue Your Journey (Log In) */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
               <button
-                onClick={() => onNavigate('intro')}
+                onClick={() => {
+                  if (onOpenSignUp) onOpenSignUp();
+                  else onNavigate('auth');
+                }}
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#0B6B3A] text-white text-base font-bold shadow-lg shadow-[#0B6B3A]/30 hover:bg-[#074626] hover:scale-[1.02] transition-all cursor-pointer active:translate-y-0.5 border-b-4 border-[#074626]"
               >
-                <span>Start My 14-Day Plan</span>
+                <span>Get Started</span>
                 <ArrowRight className="w-5 h-5 text-[#F3C623]" />
               </button>
 
               <button
-                onClick={() => onNavigate('checkin')}
+                onClick={() => {
+                  if (onOpenLogIn) onOpenLogIn();
+                  else onNavigate('auth');
+                }}
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-[#F3C623] text-[#074626] text-base font-bold shadow-lg shadow-[#F3C623]/30 hover:bg-[#e0b418] hover:scale-[1.02] transition-all cursor-pointer active:translate-y-0.5 border-b-4 border-[#C99B08]"
               >
-                <Sparkles className="w-5 h-5 text-[#074626]" />
-                <span>Take 3-Minute Check-In</span>
+                <LogIn className="w-5 h-5 text-[#074626]" />
+                <span>Continue Your Journey</span>
               </button>
             </div>
 
@@ -228,7 +243,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   {[
                     { id: 'plan', icon: Target, label: '1. My 14-Day Plan' },
                     { id: 'language', icon: PenLine, label: '2. CV Story Maker' },
-                    { id: 'mentor', icon: Users, label: '3. Talk to Mentors' },
+                    { id: 'proof', icon: Award, label: '3. Wins & Proof' },
                   ].map((t) => {
                     const isSelected = heroTab === t.id;
                     const IconComponent = t.icon;
@@ -263,7 +278,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                           </span>
                         </div>
                         <h4 className="text-sm font-bold text-white mt-1">
-                          Goal: Package 1 Case Study & Reach Out to 2 Mentors
+                          Goal: Package 1 Case Study & Submit 2 Targeted Applications
                         </h4>
                       </div>
                       <div className="text-xs font-medium text-emerald-200 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
@@ -328,14 +343,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                           <div>
                             <div className="flex items-center gap-1.5">
                               <span className={`text-xs font-semibold ${task2Done ? 'line-through text-gray-400' : 'text-gray-900'}`}>
-                                15-Minute Chat with Mentor
+                                Portfolio Project Case Study
                               </span>
                               <span className="text-[10px] font-bold text-[#074626] bg-[#F3C623] px-2 py-0.5 rounded-md">
                                 In 2 Days
                               </span>
                             </div>
                             <p className="text-[11px] text-gray-600 mt-0.5 font-normal">
-                              Ask Amara (Fintech Lead) 3 guided questions about entry hiring
+                              Document Makola market inventory app results and verified metrics
                             </p>
                           </div>
                         </div>
@@ -388,37 +403,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
                 )}
 
-                {/* Tab 3: Practitioner Mentorship Guide Preview */}
-                {heroTab === 'mentor' && (
-                  <div className="p-5 rounded-2xl bg-[#FEF7DA]/60 border border-[#F3C623] flex flex-col sm:flex-row items-center justify-between gap-4 animate-fadeIn">
+                {/* Tab 3: Wins & Verified Deliverables Dossier Preview */}
+                {heroTab === 'proof' && (
+                  <div className="p-5 rounded-2xl bg-[#EBF5EF] border border-emerald-300 flex flex-col sm:flex-row items-center justify-between gap-4 animate-fadeIn">
                     <div className="flex items-center gap-4">
-                      <img
-                        src="/images/networking/creative_mentor.jpg"
-                        alt="Practitioner Mentor"
-                        referrerPolicy="no-referrer"
-                        className="w-16 h-16 rounded-2xl object-cover ring-2 ring-[#0B6B3A] shadow-md"
-                      />
+                      <div className="w-14 h-14 rounded-2xl bg-[#0B6B3A] text-[#F3C623] flex items-center justify-center font-bold shrink-0 shadow-md">
+                        <Award className="w-7 h-7" />
+                      </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-sm font-bold text-gray-950">Amara Nwosu</h4>
+                          <h4 className="text-sm font-bold text-gray-950">Verified Deliverable Dossier</h4>
                           <span className="text-[10px] font-bold bg-[#0B6B3A] text-white px-2 py-0.5 rounded-md">
-                            Fintech Lead
+                            100% Verified
                           </span>
                         </div>
                         <div className="text-xs text-gray-700 font-normal mt-0.5">
-                          "I love helping young Africans. We practice mock interview questions in 15 minutes."
+                          "Makola Market Inventory Tracker case study packaged with live code demo and merchant metrics."
                         </div>
                         <div className="text-[11px] text-[#074626] font-semibold mt-1">
-                          • 14 Cohort Fellows Mentored • Fast 24-hr reply
+                          • 4 Sprint Deliverables Completed • Recruiter-Ready Proof
                         </div>
                       </div>
                     </div>
 
                     <button
-                      onClick={() => onNavigate('networking')}
+                      onClick={() => onNavigate('progress')}
                       className="px-5 py-3 rounded-2xl bg-[#0B6B3A] text-white text-xs font-bold hover:bg-[#074626] transition-all shrink-0 shadow-md cursor-pointer border-b-2 border-[#074626]"
                     >
-                      See Friendly Mentors →
+                      View Proof Dossier →
                     </button>
                   </div>
                 )}
@@ -560,7 +572,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               { label: 'Work Evidence', icon: Briefcase, desc: 'Tangible projects you can show.', highlight: false },
               { label: 'Clear Direction', icon: Target, desc: 'Focus on 1 achievable milestone.', highlight: false },
               { label: 'Financial Reality', icon: Coins, desc: 'Honest budget & data awareness.', highlight: true },
-              { label: 'Mentors & Allies', icon: Handshake, desc: 'Warm connections across Africa.', highlight: false },
+              { label: 'Cohort Community & Allies', icon: Handshake, desc: 'Supportive connections across Africa.', highlight: false },
               { label: 'Daily Momentum', icon: Rocket, desc: '14 days of bite-sized action.', highlight: false },
             ].map((facet, i) => {
               const IconComp = facet.icon;
@@ -638,125 +650,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* 4. THE 6 SIMPLE STEPS TO GET READY - CLEAN BRAND STYLING & REAL ICONS */}
-      <section className="py-20 sm:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#0B6B3A] bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200">
-              Chapter 03 · The 6 Easy Steps
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 mt-4 tracking-tight">
-              From uncertainty to ready in 6 clear milestones
-            </h2>
-            <p className="text-base text-gray-600 mt-2 font-normal">
-              Every step is structured and accessible. No grading, no pressure. Just steady progress toward your goals.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                num: '01',
-                title: 'Quick Check-In',
-                time: '3 minutes',
-                desc: 'Answer 5 quick questions about where you are right now. Tell us about your course, schedule, and daily realities.',
-                route: 'checkin' as PageView,
-                cta: 'Start Check-In →',
-                bgColor: 'bg-[#EBF5EF]',
-                borderColor: 'border-emerald-300',
-                badgeBg: 'bg-[#0B6B3A] text-white',
-              },
-              {
-                num: '02',
-                title: 'What We Found',
-                time: 'Instant',
-                desc: 'Uncover your hidden strengths and discover roles that match your existing skills. Clear and direct.',
-                route: 'insights' as PageView,
-                cta: 'See Strengths →',
-                bgColor: 'bg-[#FEF7DA]',
-                borderColor: 'border-[#F3C623]',
-                badgeBg: 'bg-[#074626] text-white',
-              },
-              {
-                num: '03',
-                title: 'My 14-Day Plan',
-                time: '5 minutes',
-                desc: 'Receive 5 concrete tasks tailored to this sprint with simple check-offs. Track your growth day by day.',
-                route: 'plan' as PageView,
-                cta: 'Open 14-Day Plan →',
-                bgColor: 'bg-[#F2F9F5]',
-                borderColor: 'border-emerald-300',
-                badgeBg: 'bg-[#0B6B3A] text-white',
-              },
-              {
-                num: '04',
-                title: 'CV & Story Studio',
-                time: '10 minutes',
-                desc: 'Input your school projects or student initiatives. We help you polish them into bullet points employers respect.',
-                route: 'studio' as PageView,
-                cta: 'Polish CV Bullet Points →',
-                bgColor: 'bg-white',
-                borderColor: 'border-emerald-200',
-                badgeBg: 'bg-[#074626] text-white',
-              },
-              {
-                num: '05',
-                title: 'Talk to Mentors',
-                time: '15-min chat',
-                desc: 'Connect with experienced African professionals across leading firms. We provide exact questions to ask.',
-                route: 'networking' as PageView,
-                cta: 'Meet Friendly Mentors →',
-                bgColor: 'bg-[#FEF7DA]/60',
-                borderColor: 'border-[#F3C623]',
-                badgeBg: 'bg-[#074626] text-white',
-              },
-              {
-                num: '06',
-                title: 'Energy & Coach Support',
-                time: 'Weekly check',
-                desc: 'Check in on how you are feeling. Whenever you need guidance, an R-WEF human coach is available to help.',
-                route: 'wellbeing' as PageView,
-                cta: 'Check My Energy →',
-                bgColor: 'bg-[#EBF5EF]',
-                borderColor: 'border-emerald-300',
-                badgeBg: 'bg-[#0B6B3A] text-white',
-              },
-            ].map((stage, idx) => (
-              <div
-                key={idx}
-                className={`p-6 rounded-3xl ${stage.bgColor} border ${stage.borderColor} shadow-xs flex flex-col justify-between hover:-translate-y-1 transition-all`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full ${stage.badgeBg} shadow-xs`}>
-                      STEP {stage.num}
-                    </span>
-                    <span className="text-xs font-medium text-gray-700 bg-white/90 px-2.5 py-0.5 rounded-full border border-gray-200 flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-[#0B6B3A]" />
-                      <span>{stage.time}</span>
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-950 mb-2">{stage.title}</h3>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 font-normal">
-                    {stage.desc}
-                  </p>
-                </div>
-                <button
-                  onClick={() => onNavigate(stage.route)}
-                  className="py-3 px-4 text-xs font-bold inline-flex items-center justify-center gap-2 w-full rounded-2xl bg-[#0B6B3A] hover:bg-[#074626] text-white transition-all cursor-pointer shadow-sm active:translate-y-0.5 border-b-2 border-[#074626]"
-                >
-                  <span>{stage.cta}</span>
-                  <ArrowRight className="w-4 h-4 text-[#F3C623]" />
-                </button>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. GBG COHORT 2 PILOT CONTEXT & R-WEF (Deep Brand Green with Yellow Accent) */}
+      {/* 4. GBG COHORT 2 PILOT CONTEXT & R-WEF (Deep Brand Green with Yellow Accent) */}
       <section id="gbg-cohort" className="py-20 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-br from-[#074626] via-[#0B6B3A] to-[#074626] text-white rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-14 overflow-hidden relative shadow-2xl border border-emerald-500/40">
@@ -774,11 +668,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </p>
                 <div className="flex flex-wrap items-center gap-4">
                   <button
-                    onClick={() => onNavigate('staff')}
+                    onClick={() => {
+                      if (onOpenExploreDemo) onOpenExploreDemo();
+                      else onNavigate('auth');
+                    }}
                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#F3C623] text-[#074626] text-xs font-bold hover:bg-[#e0b418] transition-all shadow-md cursor-pointer active:translate-y-0.5 border-b-2 border-[#C99B08]"
                   >
-                    <Users className="w-4 h-4 text-[#074626]" />
-                    <span>Open Cohort 2 Coach Desk</span>
+                    <Sparkles className="w-4 h-4 text-[#074626]" />
+                    <span>Try a Demo Account</span>
                   </button>
                   <button
                     onClick={onOpenResponsibleAi}
@@ -808,7 +705,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* 6. ETHICAL AI PROMISE - CLEAN TYPOGRAPHIC HIERARCHY */}
+      {/* 5. ETHICAL AI PROMISE - CLEAN TYPOGRAPHIC HIERARCHY */}
       <section className="py-20 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="w-16 h-16 rounded-3xl bg-emerald-50 text-[#0B6B3A] flex items-center justify-center mx-auto mb-5 shadow-xs border border-emerald-200">
@@ -844,17 +741,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
-              onClick={() => onNavigate('intro')}
+              onClick={() => {
+                if (onOpenSignUp) onOpenSignUp();
+                else onNavigate('auth');
+              }}
               className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#0B6B3A] text-white text-base font-bold shadow-lg shadow-[#0B6B3A]/30 hover:bg-[#074626] transition-all cursor-pointer active:translate-y-0.5 border-b-4 border-[#074626]"
             >
-              <span>Begin My Pathway</span>
+              <span>Get Started</span>
               <ArrowRight className="w-5 h-5 text-[#F3C623]" />
             </button>
             <button
-              onClick={() => onNavigate('plan')}
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-[#F3C623] text-[#074626] text-base font-bold shadow-md hover:bg-[#e0b418] transition-all cursor-pointer active:translate-y-0.5 border-b-4 border-[#C99B08]"
+              onClick={() => {
+                if (onOpenLogIn) onOpenLogIn();
+                else onNavigate('auth');
+              }}
+              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-[#F3C623] text-[#074626] text-base font-bold shadow-md hover:bg-[#e0b418] transition-all cursor-pointer active:translate-y-0.5 border-b-4 border-[#C99B08]"
             >
-              <span>See Sample 14-Day Plan</span>
+              <LogIn className="w-5 h-5 text-[#074626]" />
+              <span>Continue Your Journey</span>
             </button>
           </div>
         </div>
@@ -870,12 +774,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-xs text-gray-700 font-semibold">
+          <div className="flex flex-wrap items-center gap-6 text-xs text-gray-700 font-semibold">
+            {!currentUser && onOpenLogIn && (
+              <button onClick={onOpenLogIn} className="hover:text-[#0B6B3A] transition-colors cursor-pointer">
+                Log In
+              </button>
+            )}
+            {!currentUser && onOpenSignUp && (
+              <button onClick={onOpenSignUp} className="hover:text-[#0B6B3A] transition-colors cursor-pointer">
+                Sign Up Free
+              </button>
+            )}
             <button onClick={onOpenResponsibleAi} className="hover:text-[#0B6B3A] transition-colors cursor-pointer">
               Our Honest AI Promise
             </button>
-            <button onClick={() => onNavigate('staff')} className="hover:text-[#0B6B3A] transition-colors cursor-pointer">
-              GBG Coach Desk
+            <button onClick={() => { if (onOpenExploreDemo) onOpenExploreDemo(); else onNavigate('auth'); }} className="hover:text-[#0B6B3A] transition-colors cursor-pointer">
+              Explore Demo Accounts
             </button>
             <span className="text-[#0B6B3A] bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200 font-semibold">
               Cohort 2 Active

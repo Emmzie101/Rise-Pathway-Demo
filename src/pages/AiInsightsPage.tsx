@@ -48,7 +48,7 @@ export const AiInsightsPage: React.FC<AiInsightsPageProps> = ({
   const readinessMetrics = [
     { label: 'School Projects & Hands-On Skills', score: 85, color: 'bg-[#0B6B3A]', text: 'Strong Foundation' },
     { label: 'Writing Validated Proof on Your CV', score: 45, color: 'bg-[#F3C623]', text: 'Sprint Target' },
-    { label: 'Connecting with African Mentors', score: 50, color: 'bg-[#074626]', text: 'Ready to Start' },
+    { label: 'Building Industry-Ready Portfolio', score: 50, color: 'bg-[#074626]', text: 'Ready to Start' },
     { label: 'Weekly Pacing & Energy Balance', score: 78, color: 'bg-[#0E7A43]', text: 'Steady & Healthy' },
   ];
 

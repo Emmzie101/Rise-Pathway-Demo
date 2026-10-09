@@ -73,11 +73,11 @@ export const RiseIntroPage: React.FC<RiseIntroPageProps> = ({
     },
     {
       num: '5',
-      title: 'Talk to Mentors',
-      lead: 'Who can answer your career questions?',
-      desc: 'Connect with experienced African professionals across leading firms. We provide 3 courteous questions to guide your call.',
-      time: '15-min chat',
-      aiRole: 'Provides outreach conversation guides so networking feels natural.',
+      title: 'Build Verified Proof',
+      lead: 'How will employers evaluate your skills?',
+      desc: 'Assemble live deliverables, project links, or case studies demonstrating real competence from your coursework.',
+      time: 'Project proof',
+      aiRole: 'Organizes your artifacts into verified, shareable evidence dossier.',
       badgeColor: 'bg-[#074626] text-white',
       borderColor: 'border-[#F3C623]',
       bgColor: 'bg-[#FEF7DA]/70',
@@ -140,7 +140,7 @@ export const RiseIntroPage: React.FC<RiseIntroPageProps> = ({
               </div>
               <h3 className="text-xl font-bold text-gray-950 mb-2">How does AI help me?</h3>
               <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
-                AI assists you with articulating your coursework, structuring your tasks, and reaching out to mentors. It never invents false claims.
+                AI assists you with articulating your coursework, structuring your tasks, and preparing targeted applications. It never invents false claims.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-amber-300/80 text-xs font-semibold text-[#074626] flex items-center gap-1.5">

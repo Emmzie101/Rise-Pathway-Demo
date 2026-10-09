@@ -60,7 +60,7 @@ export const ResponsibleAiModal: React.FC<ResponsibleAiModalProps> = ({ isOpen, 
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-4 h-4 text-[#0B6B3A] shrink-0 mt-0.5" />
-                <span>Provides thoughtful conversation guides for mentor calls.</span>
+                <span>Provides thoughtful conversation guides for professional inquiries.</span>
               </li>
             </ul>
           </div>
@@ -82,7 +82,7 @@ export const ResponsibleAiModal: React.FC<ResponsibleAiModalProps> = ({ isOpen, 
               </li>
               <li className="flex items-start gap-2">
                 <X className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                <span>Never replaces real human mentors and community peers.</span>
+                <span>Never replaces real human judgment and cohort peers.</span>
               </li>
               <li className="flex items-start gap-2">
                 <X className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />

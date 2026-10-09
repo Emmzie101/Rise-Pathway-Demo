@@ -1,17 +1,34 @@
 export type PageView =
   | 'landing'
   | 'intro'
+  | 'auth'
   | 'checkin'
+  | 'assessment'
   | 'hub'
   | 'insights'
   | 'goal'
   | 'plan'
   | 'studio'
-  | 'networking'
   | 'learning'
   | 'wellbeing'
   | 'progress'
-  | 'staff';
+  | 'staff'
+  | 'admin'
+  | 'safeguarding';
+
+export type UserRole = 'fellow' | 'staff' | 'admin' | 'safeguarding';
+
+export interface UserAccount {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+  avatar?: string;
+  isApproved: boolean;
+  isDemo?: boolean;
+  cohort?: string;
+  createdAt: string;
+}
 
 export interface ParticipantProfile {
   id: string;
@@ -29,6 +46,7 @@ export interface ParticipantProfile {
   supportRequested: boolean;
   supportNote?: string;
   cohort: string;
+  baselineCompleted?: boolean;
 }
 
 export interface CheckInResponses {
@@ -43,6 +61,54 @@ export interface CheckInResponses {
   confidenceLevel: number; // 1-5
   frictionFactors: string[];
   supportPreference: 'independent' | 'peer' | 'staff_checkin';
+}
+
+export interface OpportunityItem {
+  id: string;
+  userId?: string;
+  name: string;
+  organization: string;
+  link?: string;
+  deadline?: string;
+  type: 'Job' | 'Internship' | 'Traineeship' | 'Fellowship' | 'Freelance' | 'Grant';
+  status: 'Interested' | 'Preparing' | 'Applied' | 'Interview / Next Stage' | 'Successful' | 'Not Successful' | 'Withdrawn';
+  nextAction?: string;
+  followUpDate?: string;
+  notes?: string;
+  outcome?: string;
+  createdAt: string;
+}
+
+export interface SupportRequest {
+  id: string;
+  userId: string;
+  userName: string;
+  userEmail: string;
+  category: 'Academic & Career' | 'Connectivity & Electricity' | 'Personal Wellbeing & Pace' | 'Technical & Project Help' | 'Confidential Safeguarding';
+  message: string;
+  urgency: 'Normal' | 'Urgent';
+  status: 'Pending' | 'In Review' | 'Resolved';
+  assignedTo?: string;
+  staffNotes?: string;
+  createdAt: string;
+  isSafeguarding?: boolean;
+}
+
+export interface WeeklyLearningLesson {
+  id: string;
+  weekNumber: number;
+  stage: 'Stabilise' | 'Decentre' | 'Equip' | 'Act';
+  title: string;
+  description: string;
+  durationMinutes: number;
+  googleDriveLink?: string;
+  resourceLinks?: { label: string; url: string }[];
+  assignmentTask?: string;
+  deadline?: string;
+  isUnlocked: boolean;
+  isPublished: boolean;
+  releaseDate?: string;
+  completed?: boolean;
 }
 
 export interface AiPathwayInsight {

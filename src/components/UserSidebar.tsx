@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PageView, ParticipantProfile } from '../types';
 import { RwefLogo } from './RwefLogo';
 import {
-  Compass,
-  CheckCircle2,
+  Home,
+  Target,
   FileText,
-  MessageSquare,
-  Sparkles,
   BookOpen,
   Heart,
   TrendingUp,
+  ShieldCheck,
+  ShieldAlert,
+  Settings,
   Users,
-  Target,
   ChevronLeft,
   ChevronRight,
-  ShieldCheck,
-  Home,
   LogOut,
-  Zap,
-  Menu,
-  X,
-  User,
-  Settings,
-  Plus,
+  Sparkles,
+  Lock,
 } from 'lucide-react';
 
 interface UserSidebarProps {
@@ -34,6 +28,8 @@ interface UserSidebarProps {
   mobileOpen: boolean;
   onCloseMobile: () => void;
   onOpenResponsibleAi: () => void;
+  userRole?: string;
+  onSignOut?: () => void;
 }
 
 export const UserSidebar: React.FC<UserSidebarProps> = ({
@@ -45,33 +41,38 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
   mobileOpen,
   onCloseMobile,
   onOpenResponsibleAi,
+  userRole = 'fellow',
+  onSignOut,
 }) => {
-  const navSections = [
-    {
-      heading: 'Home & Roadmap',
-      items: [
-        { id: 'hub' as PageView, label: 'Workspace Home', icon: Home, badge: 'Hub' },
-        { id: 'plan' as PageView, label: 'My 14-Day Plan', icon: Target, badge: 'Active' },
-        { id: 'progress' as PageView, label: 'My Wins & Proof', icon: TrendingUp },
-      ],
-    },
-    {
-      heading: 'Practice & Tools',
-      items: [
-        { id: 'studio' as PageView, label: 'CV & Story Studio', icon: FileText },
-        { id: 'learning' as PageView, label: 'Action Lessons', icon: BookOpen },
-        { id: 'networking' as PageView, label: 'Meet Mentors', icon: Users },
-        { id: 'wellbeing' as PageView, label: 'How I Feel', icon: Heart },
-        { id: 'insights' as PageView, label: 'AI Diagnostics', icon: Sparkles },
-      ],
-    },
-    {
-      heading: 'Staff Area',
-      items: [
-        { id: 'staff' as PageView, label: 'Coach Desk', icon: ShieldCheck, badge: 'Staff' },
-      ],
-    },
-  ];
+  // ROLE-SPECIFIC NAVIGATION CONFIGURATION
+  let navItems: { id: PageView; label: string; icon: any; badge?: string }[] = [];
+
+  if (userRole === 'staff') {
+    navItems = [
+      { id: 'staff', label: 'Cohort Fellows', icon: Users, badge: 'Staff' },
+      { id: 'learning', label: 'Curriculum Resources', icon: BookOpen },
+    ];
+  } else if (userRole === 'admin') {
+    navItems = [
+      { id: 'admin', label: 'User & Access Control', icon: Settings, badge: 'Admin' },
+      { id: 'staff', label: 'Cohort Overview', icon: Users },
+      { id: 'learning', label: 'Learning Resources', icon: BookOpen },
+    ];
+  } else if (userRole === 'safeguarding') {
+    navItems = [
+      { id: 'safeguarding', label: 'Confidential Dossiers', icon: ShieldAlert, badge: 'Restricted' },
+    ];
+  } else {
+    // Fellow Navigation
+    navItems = [
+      { id: 'hub', label: 'Workspace Home', icon: Home },
+      { id: 'plan', label: 'My Plan & Opps', icon: Target },
+      { id: 'learning', label: 'Learning Hub', icon: BookOpen },
+      { id: 'studio', label: 'CV & Story Studio', icon: FileText },
+      { id: 'wellbeing', label: 'Weekly Wellbeing', icon: Heart },
+      { id: 'progress', label: 'Wins & Evidence', icon: TrendingUp },
+    ];
+  }
 
   const handleItemClick = (view: PageView) => {
     onNavigate(view);
@@ -81,11 +82,13 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
   const sidebarContent = (
     <div className="flex flex-col h-full justify-between bg-white border-r border-gray-200">
       
-      {/* Top Brand Header */}
+      {/* Brand Header */}
       <div>
-        <div className={`flex items-center justify-between border-b border-gray-100 transition-all ${
-          isCollapsed ? 'p-3 flex-col gap-3' : 'p-4 sm:p-5'
-        }`}>
+        <div
+          className={`flex items-center justify-between border-b border-gray-100 transition-all ${
+            isCollapsed ? 'p-3 flex-col gap-3' : 'p-4 sm:p-5'
+          }`}
+        >
           <button
             onClick={() => onNavigate('landing')}
             className="flex items-center gap-2.5 text-left cursor-pointer group"
@@ -97,8 +100,8 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
                 <span className="text-xs font-black tracking-wider text-[#0B6B3A] uppercase font-sans">
                   RISE Pathway
                 </span>
-                <span className="text-[10px] font-bold text-[#4A3319] bg-[#F3C623] px-2 py-0.2 rounded-full w-fit">
-                  GBG Cohort 2
+                <span className="text-[10px] font-bold text-[#4A3319] bg-[#F3C623] px-2 py-0.5 rounded-full w-fit">
+                  {userRole.toUpperCase()}
                 </span>
               </div>
             )}
@@ -112,129 +115,83 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
           >
             {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           </button>
-
-          {/* Mobile Close Button */}
-          <button
-            onClick={onCloseMobile}
-            className="lg:hidden p-1.5 rounded-xl text-gray-500 hover:bg-gray-100 cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Canva-style Big Action Button */}
-        <div className="p-3 pb-0">
-          <button
-            onClick={() => handleItemClick('plan')}
-            className={`w-full rounded-2xl bg-[#0B6B3A] hover:bg-[#074524] text-white font-semibold transition-all shadow-md shadow-[#0B6B3A]/20 cursor-pointer active:translate-y-0.5 flex items-center justify-center gap-2 ${
-              isCollapsed ? 'p-3' : 'px-4 py-2.5 text-xs'
-            }`}
-            title="Start Next Action"
-          >
-            <Plus className="w-4 h-4 text-[#F3C623] stroke-[3]" />
-            {!isCollapsed && <span>Start Next Action</span>}
-          </button>
         </div>
 
         {/* Navigation Items */}
-        <div className="p-3 space-y-6 overflow-y-auto max-h-[calc(100vh-250px)] no-scrollbar">
-          {navSections.map((sec, secIdx) => (
-            <div key={secIdx} className="space-y-1">
-              {!isCollapsed && (
-                <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">
-                  {sec.heading}
-                </div>
-              )}
+        <div className="p-3 space-y-1">
+          {navItems.map((item) => {
+            const isActive = currentView === item.id;
+            const Icon = item.icon;
 
-              {sec.items.map((item) => {
-                const Icon = item.icon;
-                const isActive = currentView === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleItemClick(item.id)}
-                    className={`w-full flex items-center gap-3 rounded-2xl transition-all cursor-pointer group ${
-                      isCollapsed ? 'p-3 justify-center' : 'px-3.5 py-2.5 justify-between'
-                    } ${
-                      isActive
-                        ? 'bg-[#0B6B3A] text-white shadow-md shadow-[#0B6B3A]/20 font-bold'
-                        : 'text-gray-700 hover:bg-emerald-50/60 hover:text-[#0B6B3A] font-medium'
-                    }`}
-                    title={isCollapsed ? item.label : undefined}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Icon className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-110 ${
-                        isActive ? 'text-[#F3C623]' : 'text-gray-500 group-hover:text-[#0B6B3A]'
-                      }`} />
-                      {!isCollapsed && (
-                        <span className="text-xs">{item.label}</span>
-                      )}
-                    </div>
-
-                    {!isCollapsed && item.badge && (
-                      <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${
-                        isActive
-                          ? 'bg-[#F3C623] text-[#4A3319]'
-                          : 'bg-emerald-100 text-[#0B6B3A]'
-                      }`}>
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleItemClick(item.id)}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-[#0B6B3A] text-white shadow-sm shadow-[#0B6B3A]/20'
+                    : 'text-gray-600 hover:bg-emerald-50/60 hover:text-gray-900'
+                } ${isCollapsed ? 'justify-center px-2' : ''}`}
+                title={item.label}
+              >
+                <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#F3C623]' : 'text-gray-500'}`} />
+                {!isCollapsed && (
+                  <div className="flex items-center justify-between w-full">
+                    <span className="truncate">{item.label}</span>
+                    {item.badge && (
+                      <span
+                        className={`text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase ${
+                          isActive
+                            ? 'bg-[#074626] text-[#F3C623]'
+                            : 'bg-emerald-100 text-[#0B6B3A]'
+                        }`}
+                      >
                         {item.badge}
                       </span>
                     )}
-                  </button>
-                );
-              })}
-            </div>
-          ))}
+                  </div>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Bottom Profile & Utilities */}
-      <div className="p-3 border-t border-gray-100 bg-[#F8FAF8]">
-        {/* Responsible AI quick link */}
-        <button
-          onClick={onOpenResponsibleAi}
-          className={`w-full flex items-center gap-2 rounded-xl text-gray-600 hover:text-[#0B6B3A] hover:bg-white transition-all mb-2 cursor-pointer ${
-            isCollapsed ? 'p-2 justify-center' : 'px-3 py-2 text-xs font-semibold'
-          }`}
-          title="Ethical AI Charter"
-        >
-          <ShieldCheck className="w-4 h-4 text-[#0B6B3A] shrink-0" />
-          {!isCollapsed && <span>Responsible AI Charter</span>}
-        </button>
-
-        {/* Participant Mini Card */}
-        <div className={`rounded-2xl bg-white border border-gray-200/80 transition-all ${
-          isCollapsed ? 'p-2 flex flex-col items-center gap-2' : 'p-3 flex items-center justify-between gap-3'
-        }`}>
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="relative shrink-0">
-              <img
-                src={participant.avatar || '/images/hero/hero_african_youth.jpg'}
-                alt={participant.name}
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.src = '/images/hero/hero_african_youth.jpg';
-                }}
-                className="w-8 h-8 rounded-xl object-cover ring-2 ring-emerald-200"
-              />
-              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#0B6B3A] border-2 border-white" />
-            </div>
-
-            {!isCollapsed && (
-              <div className="min-w-0">
-                <div className="text-xs font-bold text-gray-900 truncate">{participant.name}</div>
-                <div className="text-[10px] text-gray-500 truncate">{participant.location.split(',')[0]}</div>
+      {/* Bottom Profile & Actions */}
+      <div className="p-3 border-t border-gray-100 space-y-2">
+        {!isCollapsed && (
+          <div className="p-3 bg-[#FAF9F5] rounded-2xl border border-gray-200/80 flex items-center justify-between">
+            <div className="min-w-0 pr-2">
+              <div className="text-xs font-bold text-gray-900 truncate">
+                {participant.name}
               </div>
-            )}
+              <div className="text-[10px] text-gray-500 capitalize">{userRole} Account</div>
+            </div>
           </div>
+        )}
 
-          {!isCollapsed && (
+        <div className="flex flex-col gap-1.5">
+          <button
+            onClick={onOpenResponsibleAi}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-gray-600 hover:bg-emerald-50 hover:text-[#0B6B3A] transition-colors cursor-pointer ${
+              isCollapsed ? 'justify-center' : ''
+            }`}
+            title="Ethical AI Guidelines"
+          >
+            <ShieldCheck className="w-4 h-4 text-[#0B6B3A] shrink-0" />
+            {!isCollapsed && <span>Responsible AI</span>}
+          </button>
+
+          {onSignOut && (
             <button
-              onClick={() => onNavigate('landing')}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-colors cursor-pointer"
-              title="Return to Public Homepage"
+              onClick={onSignOut}
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold text-rose-700 bg-rose-50/80 hover:bg-rose-100 hover:text-rose-800 transition-colors cursor-pointer border border-rose-200/60 ${
+                isCollapsed ? 'justify-center' : ''
+              }`}
+              title="Sign Out"
             >
-              <Home className="w-4 h-4" />
+              <LogOut className="w-4 h-4 shrink-0 text-rose-600" />
+              {!isCollapsed && <span>Sign Out</span>}
             </button>
           )}
         </div>
@@ -245,23 +202,23 @@ export const UserSidebar: React.FC<UserSidebarProps> = ({
 
   return (
     <>
-      {/* Desktop Sticky Sidebar */}
-      <aside className={`hidden lg:block shrink-0 sticky top-0 h-screen transition-all duration-300 z-40 ${
-        isCollapsed ? 'w-20' : 'w-64'
-      }`}>
+      {/* Desktop Persistent Sidebar */}
+      <aside
+        className={`hidden lg:block h-screen sticky top-0 transition-all duration-300 z-40 ${
+          isCollapsed ? 'w-20' : 'w-64'
+        }`}
+      >
         {sidebarContent}
       </aside>
 
-      {/* Mobile Drawer with Backdrop */}
+      {/* Mobile Offcanvas Drawer */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden flex">
-          {/* Backdrop */}
+        <div className="lg:hidden fixed inset-0 z-50 flex animate-fadeIn">
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm animate-fadeIn"
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
             onClick={onCloseMobile}
           />
-          {/* Drawer Content */}
-          <div className="relative w-72 max-w-[85vw] h-full shadow-2xl z-10 animate-slideRight">
+          <div className="relative w-72 max-w-[85vw] h-full z-10 animate-slideRight">
             {sidebarContent}
           </div>
         </div>

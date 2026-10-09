@@ -97,14 +97,15 @@ export const PathwayCheckInPage: React.FC<PathwayCheckInPageProps> = ({
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Completed - update participant summary and navigate to welcome workspace hub
+      // Completed - update participant summary and navigate to Career Pathway Assessment & 30-60-90 Day Plan
       onUpdateParticipant({
         energyLevel: responses.energyLevel,
         confidenceLevel: responses.confidenceLevel,
         topBarriers: responses.frictionFactors.slice(0, 3),
         supportRequested: responses.supportPreference === 'staff_checkin',
+        baselineCompleted: true,
       });
-      onNavigate('hub');
+      onNavigate('assessment');
     }
   };
 
@@ -126,7 +127,7 @@ export const PathwayCheckInPage: React.FC<PathwayCheckInPageProps> = ({
           <div className="flex items-center justify-between text-xs text-gray-700 mb-2 font-medium">
             <span className="inline-flex items-center gap-1.5 text-[#0B6B3A] font-semibold">
               <Compass className="w-4 h-4 text-[#0B6B3A]" />
-              <span>GBG Cohort 2 · Quick Check-In</span>
+              <span>AI Pathway Check-In</span>
             </span>
             <span className="font-mono font-bold text-[#0B6B3A] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
               Step {currentStep} of {totalSteps}
@@ -535,7 +536,7 @@ export const PathwayCheckInPage: React.FC<PathwayCheckInPageProps> = ({
               onClick={handleNext}
               className="inline-flex items-center gap-2 px-7 py-3.5 text-xs sm:text-sm font-bold text-white bg-[#0B6B3A] hover:bg-[#074626] rounded-2xl shadow-lg shadow-[#0B6B3A]/25 transition-all cursor-pointer active:translate-y-0.5 border-b-2 border-[#074626]"
             >
-              <span>{currentStep === totalSteps ? 'Enter My Workspace Hub' : 'Continue'}</span>
+              <span>{currentStep === totalSteps ? 'View Career Assessment & Plan' : 'Continue'}</span>
               <ArrowRight className="w-4 h-4 text-[#F3C623]" />
             </button>
           </div>
